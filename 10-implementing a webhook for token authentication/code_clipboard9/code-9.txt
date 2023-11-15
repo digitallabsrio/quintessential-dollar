@@ -1,0 +1,1 @@
+echo "$(kubectl get svc -n kube-system my-authn | grep -v NAME | awk '{print $3}') my-authn.kube-system.svc" >> /etc/hosts

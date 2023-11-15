@@ -1,0 +1,16 @@
+{
+  "apiVersion": "authorization.k8s.io/v1beta1",
+  "kind": "SubjectAccessReview",
+  "spec": {
+    "resourceAttributes": {
+      "namespace": "kube-system",
+      "verb": "get",
+      "group": "",
+      "resource": "pods"
+    },
+    "user": "Bob",
+    "group": [
+      "group1"
+    ]
+  }
+}

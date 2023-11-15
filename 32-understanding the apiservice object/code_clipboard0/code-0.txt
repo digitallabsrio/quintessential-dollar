@@ -1,0 +1,14 @@
+apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  name: v1alpha1.pwk.educative.io
+spec:
+  group: pwk.educative.io
+  version: v1alpha1
+  service:
+    name: my-pwk-demo
+    namespace: pwk-system
+  # caBundle: base64-encoded-caBundle
+  insecureSkipTLSVerify: true  
+  groupPriorityMinimum: 1000
+  versionPriority: 100

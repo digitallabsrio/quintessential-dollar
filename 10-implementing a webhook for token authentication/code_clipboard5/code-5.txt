@@ -1,0 +1,20 @@
+{
+  "kind": "TokenReview",
+  "apiVersion": "authentication.k8s.io/v1beta1",
+  "metadata": {
+    "creationTimestamp": null
+  },
+  "spec": {
+    "token": "ZGVtby11c2VyOmRlbW8tcGFzc3dvcmQ="
+  },
+  "status": {
+    "authenticated": true,
+    "user": {
+      "username": "mock",
+      "uid": "mock",
+      "groups": [
+        "group-mock"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+// PreFilterPlugin is an interface that must be implemented by the PreFilter plugins.
+// These plugins are called at the beginning of the scheduling cycle.
+type PreFilterPlugin interface {
+	Plugin
+	// PreFilter is called at the beginning of the scheduling cycle. 
+	// All PreFilter plugins must return success or the Pod will be rejected
+	PreFilter(ctx context.Context, state *CycleState, p *v1.Pod) *Status
+	// PreFilterExtensions returns a PreFilterExtensions interface if the plugin implements one,
+	// or nothing if it does not. A PreFilter plugin can provide extensions to incrementally 
+	// modify its preprocessed info. The framework guarantees that the extensions 
+	// AddPod/RemovePod will only be called after PreFilter, possibly on a cloned
+	// CycleState, and may call those functions more than once before calling 
+	// Filter again on a specific node.
+	PreFilterExtensions() PreFilterExtensions
+}

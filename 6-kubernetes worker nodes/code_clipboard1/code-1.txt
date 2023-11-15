@@ -1,0 +1,4 @@
+NAME                           STATUS     ROLES           AGE   VERSION
+educative-demo-control-plane   Ready      control-plane   53s   v1.24.0
+educative-demo-worker          NotReady   <none>          16s   v1.24.0
+educative-demo-worker2         NotReady   <none>          15s   v1.24.0

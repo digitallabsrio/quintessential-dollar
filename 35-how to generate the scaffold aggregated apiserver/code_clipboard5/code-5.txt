@@ -1,0 +1,5 @@
+go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.8.0
+cp /root/go/bin/controller-gen ./bin
+go mod tidy
+make generate
+go mod tidy

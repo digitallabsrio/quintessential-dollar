@@ -1,0 +1,2 @@
+cp /usercode/kubectl-educative /usr/local/bin/kubectl-educative
+chmod +x /usr/local/bin/kubectl-educative

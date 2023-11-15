@@ -1,0 +1,3 @@
+cd /usercode/pwk/
+apiserver-boot build config --name pwk-aa-demo --namespace default --image dixudx/pwk:aa-nonetcd
+rm /usercode/pwk/config/etcd.yaml

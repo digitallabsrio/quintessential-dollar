@@ -1,0 +1,24 @@
+var (  
+   // TODO: move SchemeBuilder with zz_generated.deepcopy.go to k8s.io/api.  
+   // localSchemeBuilder and AddToScheme will stay in k8s.io/kubernetes.   SchemeBuilder      = runtime.NewSchemeBuilder(addKnownTypes)  
+   localSchemeBuilder = &SchemeBuilder  
+   AddToScheme        = localSchemeBuilder.AddToScheme  
+)  
+  
+// Adds the list of known types to the given scheme.  
+func addKnownTypes(scheme *runtime.Scheme) error {  
+   scheme.AddKnownTypes(SchemeGroupVersion,  
+      &Deployment{},  
+      &DeploymentList{},  
+      &StatefulSet{},  
+      &StatefulSetList{},  
+      &DaemonSet{},  
+      &DaemonSetList{},  
+      &ReplicaSet{},  
+      &ReplicaSetList{},  
+      &ControllerRevision{},  
+      &ControllerRevisionList{},  
+   )  
+   metav1.AddToGroupVersion(scheme, SchemeGroupVersion)  
+   return nil  
+}

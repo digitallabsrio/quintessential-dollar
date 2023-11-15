@@ -1,0 +1,2 @@
+cp /usercode/hack/foo_types.go /usercode/pwk/pkg/apis/bar/v1beta1/foo_types.go
+cp /usercode/hack/foo_controller.go /usercode/pwk/controllers/bar/foo_controller.go

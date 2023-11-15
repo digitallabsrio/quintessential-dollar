@@ -1,0 +1,2 @@
+cp /etc/kubernetes/manifests/kube-scheduler.yaml /usercode/kube-scheduler-old.yaml
+diff /usercode/kube-scheduler.yaml /usercode/kube-scheduler-old.yaml

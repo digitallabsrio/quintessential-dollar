@@ -1,0 +1,1 @@
+echo "$(kubectl get svc -n kube-system mutating-admission-demo | grep -v NAME | awk '{print $3}') mutating-admission-demo.kube-system.svc" >> /etc/hosts

@@ -1,0 +1,3 @@
+The following compatible plugins are available:
+
+/usr/local/bin/kubectl-educative

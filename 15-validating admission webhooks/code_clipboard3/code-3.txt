@@ -1,0 +1,69 @@
+apiVersion: admission.k8s.io/v1
+kind: AdmissionReview
+request:
+  # An auto-generated uid, which can uniquely identify this admission call
+  uid: dc91021d-2361-4f6d-a404-7c33b9e01118
+
+  # Fully-qualified GVK of object being submitted,
+  # such as autoscaling.v1.Scale or v1.Pod"
+  kind:
+    group: autoscaling
+    version: v1
+    kind: Scale
+
+  # Fully-qualified GVK of the resource being modified
+  resource:
+    group: apps
+    version: v1
+    resource: deployments
+
+  subResource: scale
+
+  # Fully-qualified GVK of the original incoming object
+  # This field is used to indicate whether the incoming object
+  # needs a conversion.
+  requestKind:
+    group: autoscaling
+    version: v1
+    kind: Scale
+
+  # Fully-qualified GVK of the original resource being modified
+  # This field is used to indicate whether the incoming object
+  # needs a conversion.
+  requestResource:
+    group: apps
+    version: v1
+    resource: deployments
+
+  requestSubResource: scale
+
+  # the resource being modified
+  name: my-deployment-demo
+  namespace: ns1
+
+  operation: UPDATE
+
+  # User info
+  userInfo:
+    username: admin
+    uid: 10f4bbfa90c7
+	groups:
+      - system:authenticated
+      - my-admin-group
+    extra:
+      some-key:
+        - some-value1
+        - some-value2
+
+  object:
+    apiVersion: autoscaling/v1
+    kind: Scale
+  oldObject:
+    apiVersion: autoscaling/v1
+    kind: Scale
+
+  options:
+    apiVersion: meta.k8s.io/v1
+    kind: UpdateOptions
+
+  dryRun: False

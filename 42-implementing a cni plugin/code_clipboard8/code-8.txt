@@ -1,0 +1,8 @@
+CNI Command: ADD
+ContainerID: fe2172d7a97df7c45dd3254c373933bafc08e9543e9d5249c97d933442e6d3bd
+Netns: /proc/16448/ns/net
+IfName: eth0
+Args: IgnoreUnknown=1;K8S_POD_NAMESPACE=default;K8S_POD_NAME=nginx;K8S_POD_INFRA_CONTAINER_ID=fe2172d7a97df7c45dd3254c373933bafc08e9543e9d5249c97d933442e6d3bd
+Path: /opt/cni/bin
+StdinData: {"cniOutput":"/tmp/cni_output.log","cniVersion":"0.3.1","name":"cbr0","prevResult":{"cniVersion":"0.3.1","interfaces":[{"name":"cni0","mac":"b2:c7:b7:4e:9d:69"},{"name":"veth3584cea2","mac":"ee:f4:e6:78:17:21"},{"name":"eth0","mac":"46:51:3b:ea:05:38","sandbox":"/proc/16448/ns/net"}],"ips":[{"version":"4","interface":2,"address":"10.244.0.4/24","gateway":"10.244.0.1"}],"routes":[{"dst":"10.244.0.0/16"},{"dst":"0.0.0.0/0","gw":"10.244.0.1"}],"dns":{}},"type":"educative"}
+----------------------

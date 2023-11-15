@@ -1,0 +1,2 @@
+NAME                     CREATED AT
+foos.apps.educative.io   2022-10-13T09:37:31Z

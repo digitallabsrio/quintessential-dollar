@@ -1,0 +1,2 @@
+cp /etc/cni/net.d/10-flannel.conflist /usercode/
+cp /usercode/10-educative-plugin.conflist /etc/cni/net.d/10-flannel.conflist

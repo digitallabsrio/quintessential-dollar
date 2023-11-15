@@ -1,0 +1,50 @@
+|-- Dockerfile
+|-- Makefile
+|-- PROJECT
+|-- README.md
+|-- api
+|   `-- v1beta1
+|       |-- foo_types.go
+|       |-- groupversion_info.go
+|       `-- zz_generated.deepcopy.go
+|-- bin
+|   `-- controller-gen
+|-- config
+|   |-- crd
+|   |   |-- kustomization.yaml
+|   |   |-- kustomizeconfig.yaml
+|   |   `-- patches
+|   |       |-- cainjection_in_foos.yaml
+|   |       `-- webhook_in_foos.yaml
+|   |-- default
+|   |   |-- kustomization.yaml
+|   |   |-- manager_auth_proxy_patch.yaml
+|   |   `-- manager_config_patch.yaml
+|   |-- manager
+|   |   |-- controller_manager_config.yaml
+|   |   |-- kustomization.yaml
+|   |   `-- manager.yaml
+|   |-- prometheus
+|   |   |-- kustomization.yaml
+|   |   `-- monitor.yaml
+|   |-- rbac
+|   |   |-- auth_proxy_client_clusterrole.yaml
+|   |   |-- auth_proxy_role.yaml
+|   |   |-- auth_proxy_role_binding.yaml
+|   |   |-- auth_proxy_service.yaml
+|   |   |-- foo_editor_role.yaml
+|   |   |-- foo_viewer_role.yaml
+|   |   |-- kustomization.yaml
+|   |   |-- leader_election_role.yaml
+|   |   |-- leader_election_role_binding.yaml
+|   |   |-- role_binding.yaml
+|   |   `-- service_account.yaml
+|   `-- samples
+|       `-- apps_v1beta1_foo.yaml
+|-- go.mod
+|-- go.sum
+|-- hack
+|   `-- boilerplate.go.txt
+`-- main.go
+
+12 directories, 36 files

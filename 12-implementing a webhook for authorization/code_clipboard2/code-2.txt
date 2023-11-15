@@ -1,0 +1,1 @@
+curl -k -X POST -d @subjectaccessreview.json http://localhost:443/authorize

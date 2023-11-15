@@ -1,0 +1,14 @@
+apiVersion: authorization.k8s.io/v1
+kind: SubjectAccessReview
+spec:
+  groups:
+  - groupValue
+  resourceAttributes:
+    group: custom
+    name: example
+    namespace: default
+    resource: foos
+    verb: create
+    version: v1beta1
+  uid: uidValue
+  user: bobby

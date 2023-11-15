@@ -1,0 +1,1 @@
+kubectl apply -f /usercode/test-pod.yaml

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2022-08-17T13:32:20Z"
+  labels:
+    my-label-mock: test
+    run: a-mock-app
+  name: a-mock-app
+  namespace: default
+  resourceVersion: "1600"

@@ -1,0 +1,2 @@
+fischers            wardle.example.com/v1alpha1            false        Fischer
+flunders            wardle.example.com/v1alpha1            true         Flunder

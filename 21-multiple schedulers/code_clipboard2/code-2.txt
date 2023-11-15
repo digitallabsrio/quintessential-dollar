@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-demo-my-scheduler
+  labels:
+    name: multi-scheduler-example
+spec:
+  schedulerName: my-scheduler
+  containers:
+  - name: pod-for-my-scheduler
+    image: nginx:1.23
+    restartPolicy: OnFailure
+    ports:
+    - containerPort: 80

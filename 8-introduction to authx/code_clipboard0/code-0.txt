@@ -1,0 +1,34 @@
+apiVersion: rbac.authorization.k8s.io/v1  
+kind: ClusterRole  
+metadata:  
+  name: my-apps-creation
+rules:  
+  - apiGroups:  
+      - "apps.mygroup.io"  
+    resources:  
+      - myapps  
+    verbs:  
+      - get  
+      - create
+	    - list
+      - delete
+      - update
+---  
+apiVersion: rbac.authorization.k8s.io/v1  
+kind: ClusterRoleBinding  
+metadata:  
+  name: my-apps-creation  
+roleRef:  
+  apiGroup: rbac.authorization.k8s.io  
+  kind: ClusterRole  
+  name: my-apps-creation 
+subjects:  
+  - apiGroup: rbac.authorization.k8s.io  
+    kind: Group  
+    name: system:mygroup:apps
+  - apiGroup: rbac.authorization.k8s.io  
+    kind: User  
+    name: Alice  
+  - kind: ServiceAccount  
+    name: myapps  
+    namespace: myapps-ns

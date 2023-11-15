@@ -1,0 +1,3 @@
+cp /usercode/scheduler-config.yaml /etc/kubernetes/scheduler-config.yaml
+cp /usercode/kube-scheduler.yaml /etc/kubernetes/manifests/kube-scheduler.yaml
+docker ps -a | grep kube-scheduler | grep -v "pause" | awk '{print $1}' | xargs docker rm -f

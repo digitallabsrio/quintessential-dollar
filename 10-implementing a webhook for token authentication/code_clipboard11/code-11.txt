@@ -1,0 +1,3 @@
+cp ~/.kube/config ./
+kubectl config --kubeconfig=./config set-credentials webhook-test --token="ZGVtby11c2VyOmRlbW8tcGFzc3dvcmQ="
+kubectl config --kubeconfig=./config set-context kubernetes-admin@kubernetes --user=webhook-test

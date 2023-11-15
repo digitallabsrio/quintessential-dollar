@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pwk-system
+
+---
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: pwk-demo-operator
+  namespace: pwk-system
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pwk-demo-operator
+  namespace: pwk-system
+  labels:
+    app: pwk-demo-operator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pwk-demo-operator
+  template:
+    metadata:
+      labels:
+        app: pwk-demo-operator
+    spec:
+      serviceAccountName: pwk-demo-operator
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+      containers:
+        - name: pwk-demo-operator
+          image: example/pwk-demo-operator:v1.1.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENV1
+              value: envValue
+          command:
+            - /usr/local/bin/pwk-demo-operator
+            - --arg1=value1
+            - --arg2=value2
+            - --arg3=$(ENV1)

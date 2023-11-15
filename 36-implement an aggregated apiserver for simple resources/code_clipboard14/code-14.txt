@@ -1,0 +1,14 @@
+apiVersion: bar.pwk.educative.io/v1beta1
+kind: Foo
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"bar.pwk.educative.io/v1beta1","kind":"Foo","metadata":{"annotations":{},"name":"demo-foo"},"spec":{"replicas":100}}
+  creationTimestamp: "2022-11-02T12:14:49Z"
+  name: demo-foo
+  resourceVersion: "9"
+  uid: 8fa3f6ad-f5b1-42f4-b943-6273b0a463d0
+spec:
+  location: Los Angeles
+  replicas: 100
+status: {}

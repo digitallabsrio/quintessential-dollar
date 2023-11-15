@@ -1,0 +1,1 @@
+docker build -t pwk/authn-webhook:v0.1 ./

@@ -1,0 +1,2 @@
+cp /usercode/webhook-config.yml /etc/kubernetes/pki/
+kubectl apply -f /usercode/authn-webhook-deploy.yml

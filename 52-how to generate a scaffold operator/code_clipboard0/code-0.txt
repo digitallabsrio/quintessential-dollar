@@ -1,0 +1,3 @@
+mkdir -p ./projects/pwk
+cd ./projects/pwk
+kubebuilder init --domain educative.io --repo educative.io/pwk

@@ -1,0 +1,8 @@
+./pkg/apis/bar
+├── doc.go
+└── v1beta1
+    ├── doc.go
+    ├── foo_types.go
+    └── register.go
+
+1 directory, 4 files

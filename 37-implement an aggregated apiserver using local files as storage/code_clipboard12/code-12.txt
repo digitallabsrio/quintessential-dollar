@@ -1,0 +1,9 @@
+apiVersion: bar.pwk.educative.io/v1beta1
+kind: Foo
+metadata:
+  creationTimestamp: null
+  name: demo-foo
+spec:
+  location: Los Angeles
+  replicas: 51
+status: {}

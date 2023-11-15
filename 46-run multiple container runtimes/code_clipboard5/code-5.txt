@@ -1,0 +1,2 @@
+NODE=`kubectl get nodes -o custom-columns=NAME:.metadata.name --no-headers`
+kubectl uncordon $NODE

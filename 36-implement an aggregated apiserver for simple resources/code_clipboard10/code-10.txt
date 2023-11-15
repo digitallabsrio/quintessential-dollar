@@ -1,0 +1,1 @@
+The Foo "demo-foo" is invalid: spec.replicas: Invalid value: 101: replicas must be < 100

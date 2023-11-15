@@ -1,0 +1,13 @@
+./config/
+├── aggregated-apiserver.yaml
+├── apiservice.yaml
+├── certificates
+│   ├── apiserver.crt
+│   ├── apiserver.key
+│   ├── apiserver_ca.crt
+│   └── apiserver_ca.key
+├── controller-manager.yaml
+├── etcd.yaml
+└── rbac.yaml
+
+1 directory, 9 file

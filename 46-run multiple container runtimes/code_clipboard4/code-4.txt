@@ -1,0 +1,2 @@
+NAME               STATUS                     ROLES                  AGE     VERSION
+73b67756424ddc50   Ready,SchedulingDisabled   control-plane,master   2m21s   v1.23.8

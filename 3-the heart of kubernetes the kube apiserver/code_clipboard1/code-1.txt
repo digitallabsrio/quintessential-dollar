@@ -1,0 +1,17 @@
+NAME                                                   READY   STATUS              RESTARTS   AGE
+coredns-6d4b75cb6d-g9n9h                               1/1     Running             0          52s
+coredns-6d4b75cb6d-zv6bt                               1/1     Running             0          52s
+etcd-educative-demo-control-plane                      1/1     Running             0          65s
+kindnet-8wphg                                          0/1     ContainerCreating   0          36s
+kindnet-l9lw9                                          1/1     Running             0          52s
+kindnet-x22kd                                          0/1     ContainerCreating   0          35s
+kube-apiserver-educative-demo-control-plane            1/1     Running             0          61s
+kube-controller-manager-educative-demo-control-plane   1/1     Running             0          61s
+kube-proxy-mth29                                       0/1     ContainerCreating   0          35s
+kube-proxy-rzzwd                                       1/1     Running             0          52s
+kube-proxy-sh7qn                                       0/1     ContainerCreating   0          36s
+kube-scheduler-educative-demo-control-plane            1/1     Running             0          61s
+kube-proxy-sh7qn                                       1/1     Running             0          37s
+kindnet-8wphg                                          1/1     Running             0          40s
+kube-proxy-mth29                                       1/1     Running             0          39s
+kindnet-x22kd                                          1/1     Running             0          40s

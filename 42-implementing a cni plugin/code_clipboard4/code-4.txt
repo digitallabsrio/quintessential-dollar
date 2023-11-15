@@ -1,0 +1,7 @@
+13,16d12
+<       "type": "educative",
+<       "cniOutput": "/tmp/cni_output.log"
+<     },
+<     {
+24d19
+<

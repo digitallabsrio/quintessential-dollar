@@ -1,0 +1,6 @@
+$ CNI_COMMAND=ADD \
+  CNI_CONTAINERID=$id \
+  CNI_NETNS=/proc/$pid/ns/net \
+  CNI_PATH=/opt/cni/bin \
+  CNI_IFNAME=eth0 \
+  my-plugin < my-config

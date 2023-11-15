@@ -1,0 +1,14 @@
+{
+  "cniVersion": "0.3.1",
+  "interfaces": [{
+    "name": "eth0",
+    "mac": "ce:60:4c:b9:3a:06",
+    "sandbox": "/proc/15116/ns/net"
+  }],
+  "ips": [{
+    "version": "4",
+    "address": "10.240.0.6/24",
+    "gateway": "10.240.0.1",
+    "interface": 0
+  }]
+}

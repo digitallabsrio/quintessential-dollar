@@ -1,0 +1,1 @@
+kubectl create -f /usercode/artifacts/flunders/01-flunder.yaml

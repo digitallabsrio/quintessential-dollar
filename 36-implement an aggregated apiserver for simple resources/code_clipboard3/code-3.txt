@@ -1,0 +1,5 @@
+cd /usercode/pwk
+cp -rf /root/go/bin /usercode/pwk/bin
+go mod tidy
+make generate
+apiserver-boot build container --image dixudx/pwk:aa-simple

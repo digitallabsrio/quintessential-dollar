@@ -1,0 +1,3 @@
+ls /var/run/netns
+# or we can run
+ip netns

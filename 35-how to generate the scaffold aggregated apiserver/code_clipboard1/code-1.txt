@@ -1,0 +1,18 @@
+.
+├── Dockerfile
+├── Makefile
+├── bin
+├── cmd
+│   ├── apiserver
+│   │   └── main.go
+│   └── manager
+│       └── main.go -> ../../main.go
+├── go.mod
+├── hack
+│   └── boilerplate.go.txt
+├── main.go
+└── pkg
+    └── apis
+        └── doc.go
+
+7 directories, 8 files

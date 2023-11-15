@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Config
+users:
+- name: 'webhook-demo.ns1.svc:8443'
+  user:
+    client-certificate-data: "<pem encoded certificate>"
+    client-key-data: "<pem encoded key>"
+- name: 'external-webhook-1.webhook-company.org'
+  user:
+    password: "<password>"
+    username: "<name>"
+- name: 'external-webhook-2.webhook-company.org'
+  user:
+    token: "<token>"

@@ -1,0 +1,1 @@
+{"kind":"Foo","apiVersion":"bar.pwk.educative.io/v1beta1","metadata":{"name":"demo-foo","creationTimestamp":null},"spec":{"replicas":101,"location":"Los Angeles"},"status":{}}

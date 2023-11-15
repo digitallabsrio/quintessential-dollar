@@ -1,0 +1,1 @@
+ls pkg/apis/bar/v1beta1/

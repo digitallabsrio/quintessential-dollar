@@ -1,0 +1,1 @@
+kubectl get pod a-mock-app -o yaml | grep -C 5 labels

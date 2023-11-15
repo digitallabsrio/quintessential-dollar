@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    :root {
+      --docsifytabs-border-color: #ededed;
+      --docsifytabs-border-px: 1px;
+      --docsifytabs-border-radius-px: ;
+      --docsifytabs-margin: 1.5em 0;
+      --docsifytabs-tab-background: #f8f8f8;
+      --docsifytabs-tab-background--active: var(--docsifytabs-content-background);
+      --docsifytabs-tab-color: #999;
+      --docsifytabs-tab-color--active: inherit;
+      --docsifytabs-tab-highlight-px: 3px;
+      --docsifytabs-tab-highlight-color: var(--theme-color, currentColor);
+      --docsifytabs-tab-padding: 0.6em 1em;
+      --docsifytabs-content-background: inherit;
+      --docsifytabs-content-padding: 1.5rem
+    }
+
+    .docsify-tabs:before,
+    .docsify-tabs__tab {
+      z-index: 1
+    }
+
+    .docsify-tabs__tab--active,
+    .docsify-tabs__tab:focus {
+      z-index: 2
+    }
+
+    .docsify-tabs {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      position: relative
+    }
+
+    .docsify-tabs:before {
+      -ms-flex-order: 0;
+      content: "";
+      -ms-flex: 1 1;
+      flex: 1 1;
+      order: 0
+    }
+
+    .docsify-tabs__tab {
+      -ms-flex-order: -1;
+      appearance: none;
+      font-size: inherit;
+      margin: 0;
+      order: -1;
+      position: relative
+    }
+
+    .docsify-tabs__content[class] {
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+      visibility: hidden;
+      width: 100%
+    }
+
+    .docsify-tabs__content[class]>:first-child {
+      margin-top: 0
+    }
+
+    .docsify-tabs__content[class]>:last-child {
+      margin-bottom: 0
+    }
+
+    .docsify-tabs__tab--active+.docsify-tabs__content[class] {
+      height: auto;
+      overflow: auto;
+      position: relative;
+      visibility: visible
+    }
+
+    [class*=docsify-tabs--] {
+      margin: 1.5em 0;
+      margin: var(--docsifytabs-margin)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab {
+      background: #f8f8f8;
+      background: var(--docsifytabs-tab-background);
+      color: #999;
+      color: var(--docsifytabs-tab-color);
+      padding: .6em 1em;
+      padding: var(--docsifytabs-tab-padding)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab--active {
+      background: inherit;
+      background: var(--docsifytabs-tab-background--active);
+      color: inherit;
+      color: var(--docsifytabs-tab-color--active)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__content {
+      background: inherit;
+      background: var(--docsifytabs-content-background)
+    }
+
+    [class*=docsify-tabs--]>.docsify-tabs__tab--active+.docsify-tabs__content {
+      padding: 1.5rem;
+      padding: var(--docsifytabs-content-padding)
+    }
+
+    .docsify-tabs--classic:before,
+    .docsify-tabs--classic>.docsify-tabs__content,
+    .docsify-tabs--classic>.docsify-tabs__tab {
+      border-color: #ededed;
+      border-color: var(--docsifytabs-border-color);
+      border-style: solid;
+      border-width: 1px;
+      border-width: var(--docsifytabs-border-px)
+    }
+
+    .docsify-tabs--classic:before {
+      border-left-width: 0;
+      border-right-width: 0;
+      border-top-width: 0;
+      margin-right: 1px;
+      margin-right: var(--docsifytabs-border-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab:first-of-type {
+      border-top-left-radius: var(--docsifytabs-border-radius-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab:last-of-type {
+      border-top-right-radius: var(--docsifytabs-border-radius-px)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab~.docsify-tabs__tab {
+      margin-left: -1px;
+      margin-left: calc(0px - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__tab--active {
+      border-bottom-width: 0;
+      box-shadow: inset 0 3px 0 0 currentColor;
+      box-shadow: inset 0 var(--docsifytabs-tab-highlight-px) 0 0 var(--docsifytabs-tab-highlight-color)
+    }
+
+    .docsify-tabs--classic>.docsify-tabs__content {
+      border-radius: 0;
+      border-radius: 0 var(--docsifytabs-border-radius-px) var(--docsifytabs-border-radius-px) var(--docsifytabs-border-radius-px);
+      border-top: 0;
+      margin-top: -1px;
+      margin-top: calc(0px - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--material>.docsify-tabs__tab {
+      background: transparent;
+      border: 0;
+      margin-bottom: 2px;
+      margin-bottom: calc(var(--docsifytabs-tab-highlight-px) - var(--docsifytabs-border-px))
+    }
+
+    .docsify-tabs--material>.docsify-tabs__tab--active {
+      background: transparent;
+      box-shadow: 0 3px 0 0 currentColor;
+      box-shadow: 0 var(--docsifytabs-tab-highlight-px) 0 0 var(--docsifytabs-tab-highlight-color)
+    }
+
+    .docsify-tabs--material>.docsify-tabs__content {
+      border-color: #ededed;
+      border-color: var(--docsifytabs-border-color);
+      border-style: solid;
+      border-width: 1px 0;
+      border-width: var(--docsifytabs-border-px) 0
+    }
+  </style>
+  <!-- UPDATE: Add description, author, og:site_name, og:title, and og:description text for your course. -->
+  <!-- NOTE: Text presented in ALL_CAPS indicate values you should replace. -->
+  <title>Project</title>
+  <link rel="stylesheet" href="/quintessential-dollar/static/vue.css">
+  <link rel="stylesheet" href="/quintessential-dollar/static/style.min.css" title="docsify-darklight-theme" type="text/css">
+  <style type="text/css">
+    .docsify-copy-code-button,
+    .docsify-copy-code-button span {
+      cursor: pointer;
+      transition: all .25s ease
+    }
+
+    .docsify-copy-code-button {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      overflow: visible;
+      padding: .65em .8em;
+      border: 0;
+      border-radius: 0;
+      outline: 0;
+      font-size: 1em;
+      background: grey;
+      background: var(--theme-color, grey);
+      color: #fff;
+      opacity: 0
+    }
+
+    .docsify-copy-code-button span {
+      border-radius: 3px;
+      background: inherit;
+      pointer-events: none
+    }
+
+    .docsify-copy-code-button .error,
+    .docsify-copy-code-button .success {
+      position: absolute;
+      z-index: -100;
+      top: 50%;
+      right: 0;
+      padding: .5em .65em;
+      font-size: .825em;
+      opacity: 0;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%)
+    }
+
+    .docsify-copy-code-button.error .error,
+    .docsify-copy-code-button.success .success {
+      right: 100%;
+      opacity: 1;
+      -webkit-transform: translate(-115%, -50%);
+      transform: translate(-115%, -50%)
+    }
+
+    .docsify-copy-code-button:focus,
+    pre:hover .docsify-copy-code-button {
+      opacity: 1
+    }
+  </style>
+  <style type="text/css">
+    .alert {
+      word-wrap: break-word;
+      display: block;
+      margin-bottom: 1rem !important;
+      padding: .75rem 1.25rem !important;
+      position: relative;
+      word-break: break-word
+    }
+
+    .alert>* {
+      max-width: 100%
+    }
+
+    .alert>:first-child {
+      margin-top: 0
+    }
+
+    .alert>:last-child {
+      margin-bottom: 0
+    }
+
+    .alert:before {
+      content: unset !important
+    }
+
+    .alert+.alert {
+      margin-top: -.25rem !important
+    }
+
+    .alert p {
+      margin-bottom: .5rem;
+      margin-top: .5rem
+    }
+
+    .alert .title {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      font-weight: 600;
+      margin: 0
+    }
+
+    .icon {
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 16px;
+      margin-right: .5rem;
+      width: 16px
+    }
+
+    .alert.callout {
+      background: var(--background);
+      border: 1px solid #eee;
+      border-left-width: .25rem;
+      border-radius: .25rem
+    }
+
+    .alert.callout.note {
+      border-left-color: #17a2b8 !important
+    }
+
+    .alert.callout.note .title {
+      color: #17a2b8
+    }
+
+    .alert.callout.note .icon-note {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%2317a2b8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.tip {
+      border-left-color: #28a745 !important
+    }
+
+    .alert.callout.tip .title {
+      color: #28a745
+    }
+
+    .alert.callout.tip .icon-tip {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 352 512' fill='%2328a745' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.warning {
+      border-left-color: #f0ad4e !important
+    }
+
+    .alert.callout.warning .title {
+      color: #f0ad4e
+    }
+
+    .alert.callout.warning .icon-warning {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 17 16' fill='%23f0ad4e' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.callout.attention {
+      border-left-color: #dc3545 !important
+    }
+
+    .alert.callout.attention .title {
+      color: #dc3545
+    }
+
+    .alert.callout.attention .icon-attention {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%23dc3545' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath fill-rule='evenodd' d='M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat {
+      background-color: #e2e3e5;
+      border: 1px solid #d6d8db;
+      border-radius: .125rem;
+      color: #383d41
+    }
+
+    .alert.flat.note {
+      background-color: #cdeefd;
+      border-color: #b4e6fc;
+      color: #02587f
+    }
+
+    .alert.flat.note .title {
+      color: #01354d
+    }
+
+    .alert.flat.note .icon-note {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%2301354d' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.tip {
+      background-color: #dbefdc;
+      border-color: #c9e7cb;
+      color: #285b2a
+    }
+
+    .alert.flat.tip .title {
+      color: #18381a
+    }
+
+    .alert.flat.tip .icon-tip {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 352 512' fill='%2318381a' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M96.06 454.35c.01 6.29 1.87 12.45 5.36 17.69l17.09 25.69a31.99 31.99 0 0 0 26.64 14.28h61.71a31.99 31.99 0 0 0 26.64-14.28l17.09-25.69a31.989 31.989 0 0 0 5.36-17.69l.04-38.35H96.01l.05 38.35zM0 176c0 44.37 16.45 84.85 43.56 115.78 16.52 18.85 42.36 58.23 52.21 91.45.04.26.07.52.11.78h160.24c.04-.26.07-.51.11-.78 9.85-33.22 35.69-72.6 52.21-91.45C335.55 260.85 352 220.37 352 176 352 78.61 272.91-.3 175.45 0 73.44.31 0 82.97 0 176zm176-80c-44.11 0-80 35.89-80 80 0 8.84-7.16 16-16 16s-16-7.16-16-16c0-61.76 50.24-112 112-112 8.84 0 16 7.16 16 16s-7.16 16-16 16z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.warning {
+      background-color: #ffddd3;
+      border-color: #ffc9ba;
+      color: #852d12
+    }
+
+    .alert.flat.warning .title {
+      color: #581e0c
+    }
+
+    .alert.flat.warning .icon-warning {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 17 16' fill='%23581e0c' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 5zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z'/%3E%3C/svg%3E")
+    }
+
+    .alert.flat.attention {
+      background-color: #fdd9d7;
+      border-color: #fcc2bf;
+      color: #7f231c
+    }
+
+    .alert.flat.attention .title {
+      color: #551713
+    }
+
+    .alert.flat.attention .icon-attention {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='1em' height='1em' viewBox='0 0 16 16' fill='%23551713' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/%3E%3Cpath fill-rule='evenodd' d='M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z'/%3E%3C/svg%3E")
+    }
+  </style>
+  <style>
+    :root {
+      --theme-color: #126893;
+    }
+  </style>
+  <style>
+    .sidebar {
+      padding-top: 0;
+    }
+
+    .search {
+      margin-bottom: 20px;
+      padding: 6px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .search .input-wrap {
+      display: flex;
+      align-items: center;
+    }
+
+    .search .results-panel {
+      display: none;
+    }
+
+    .search .results-panel.show {
+      display: block;
+    }
+
+    .search input {
+      outline: none;
+      border: none;
+      width: 100%;
+      padding: 0.6em 7px;
+      font-size: inherit;
+      border: 1px solid transparent;
+    }
+
+    .search input:focus {
+      box-shadow: 0 0 5px var(--theme-color, #42b983);
+      border: 1px solid var(--theme-color, #42b983);
+    }
+
+    .search input::-webkit-search-decoration,
+    .search input::-webkit-search-cancel-button,
+    .search input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .search input::-ms-clear {
+      display: none;
+      height: 0;
+      width: 0;
+    }
+
+    .search .clear-button {
+      cursor: pointer;
+      width: 36px;
+      text-align: right;
+      display: none;
+    }
+
+    .search .clear-button.show {
+      display: block;
+    }
+
+    .search .clear-button svg {
+      transform: scale(.5);
+    }
+
+    .search h2 {
+      font-size: 17px;
+      margin: 10px 0;
+    }
+
+    .search a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .search .matching-post {
+      border-bottom: 1px solid #eee;
+    }
+
+    .search .matching-post:last-child {
+      border-bottom: 0;
+    }
+
+    .search p {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .search p.empty {
+      text-align: center;
+    }
+
+    .app-name.hide,
+    .sidebar-nav.hide {
+      display: none;
+    }
+  </style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+  <style></style>
+</head>
+
+<body class="ready sticky ready-fix close" data-page="Assignments/Sample_Project.md">
+  <nav class="app-nav"></nav>
+  <main><button class="sidebar-toggle" aria-label="Menu">
+      <div class="sidebar-toggle-button"><span></span><span></span><span></span></div>
+    </button>
+    <aside class="sidebar">
+      <h1 class="app-name"><a class="app-name-link" data-nosearch="" href="/"><img alt="Syllabus Template"
+            src="/quintessential-dollar/static/logo-icononly.svg"></a></h1>
+      <div class="sidebar-nav">
+    <ul>
+        <li><strong><a href="/" title="Syllabus">Syllabus</a></strong></li>
+        <li><strong>Lessons</strong>
+            <ul>
+                
+                
+                <li><a href="/quintessential-dollar/0-what is this course about/0-what is this course about.html" title="What Is This Course About">What Is This Course About</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/Makefile/Makefile.html" title=""></a></li>
+                
+                
+                <li><a href="/quintessential-dollar/1-intended audience and course requirements/1-intended audience and course requirements.html" title="Intended Audience And Course Requirements">Intended Audience And Course Requirements</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/2-what is kubernetes/2-what is kubernetes.html" title="What Is Kubernetes">What Is Kubernetes</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/3-the heart of kubernetes the kube apiserver/3-the heart of kubernetes the kube apiserver.html" title="The Heart Of Kubernetes The Kube Apiserver">The Heart Of Kubernetes The Kube Apiserver</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/4-the conductor of kubernetes the kube scheduler/4-the conductor of kubernetes the kube scheduler.html" title="The Conductor Of Kubernetes The Kube Scheduler">The Conductor Of Kubernetes The Kube Scheduler</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/5-the manufactory of kubernetes the kube controller manager/5-the manufactory of kubernetes the kube controller manager.html" title="The Manufactory Of Kubernetes The Kube Controller Manager">The Manufactory Of Kubernetes The Kube Controller Manager</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/6-kubernetes worker nodes/6-kubernetes worker nodes.html" title="Kubernetes Worker Nodes">Kubernetes Worker Nodes</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/7-quiz on kubernetes architecture/7-quiz on kubernetes architecture.html" title="Quiz On Kubernetes Architecture">Quiz On Kubernetes Architecture</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/8-introduction to authx/8-introduction to authx.html" title="Introduction To Authx">Introduction To Authx</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/9-how webhook token authentication works/9-how webhook token authentication works.html" title="How Webhook Token Authentication Works">How Webhook Token Authentication Works</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/10-implementing a webhook for token authentication/10-implementing a webhook for token authentication.html" title="Implementing A Webhook For Token Authentication">Implementing A Webhook For Token Authentication</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/11-how webhook authorization works/11-how webhook authorization works.html" title="How Webhook Authorization Works">How Webhook Authorization Works</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/12-implementing a webhook for authorization/12-implementing a webhook for authorization.html" title="Implementing A Webhook For Authorization">Implementing A Webhook For Authorization</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/13-quiz on customizing authx/13-quiz on customizing authx.html" title="Quiz On Customizing Authx">Quiz On Customizing Authx</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/14-introduction to admission control/14-introduction to admission control.html" title="Introduction To Admission Control">Introduction To Admission Control</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/15-validating admission webhooks/15-validating admission webhooks.html" title="Validating Admission Webhooks">Validating Admission Webhooks</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/16-implementing a validating admission webhook/16-implementing a validating admission webhook.html" title="Implementing A Validating Admission Webhook">Implementing A Validating Admission Webhook</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/17-mutating admission webhooks/17-mutating admission webhooks.html" title="Mutating Admission Webhooks">Mutating Admission Webhooks</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/18-implementing a mutating admission webhook/18-implementing a mutating admission webhook.html" title="Implementing A Mutating Admission Webhook">Implementing A Mutating Admission Webhook</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/19-quiz on admission control/19-quiz on admission control.html" title="Quiz On Admission Control">Quiz On Admission Control</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/20-a deep dive into kubernetes scheduling/20-a deep dive into kubernetes scheduling.html" title="A Deep Dive Into Kubernetes Scheduling">A Deep Dive Into Kubernetes Scheduling</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/21-multiple schedulers/21-multiple schedulers.html" title="Multiple Schedulers">Multiple Schedulers</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/22-scheduler extender/22-scheduler extender.html" title="Scheduler Extender">Scheduler Extender</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/23-introduction to the scheduler framework/23-introduction to the scheduler framework.html" title="Introduction To The Scheduler Framework">Introduction To The Scheduler Framework</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/24-implementing a scheduler framework plugin/24-implementing a scheduler framework plugin.html" title="Implementing A Scheduler Framework Plugin">Implementing A Scheduler Framework Plugin</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/25-quiz on schedulers/25-quiz on schedulers.html" title="Quiz On Schedulers">Quiz On Schedulers</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/26-introduction to custom resources/26-introduction to custom resources.html" title="Introduction To Custom Resources">Introduction To Custom Resources</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/27-understanding crds/27-understanding crds.html" title="Understanding Crds">Understanding Crds</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/28-how to use kubernetes crds/28-how to use kubernetes crds.html" title="How To Use Kubernetes Crds">How To Use Kubernetes Crds</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/29-how to generate scaffold crds/29-how to generate scaffold crds.html" title="How To Generate Scaffold Crds">How To Generate Scaffold Crds</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/30-quiz on crd/30-quiz on crd.html" title="Quiz On Crd">Quiz On Crd</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/31-introduction to aggregated apiserver/31-introduction to aggregated apiserver.html" title="Introduction To Aggregated Apiserver">Introduction To Aggregated Apiserver</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/32-understanding the apiservice object/32-understanding the apiservice object.html" title="Understanding The Apiservice Object">Understanding The Apiservice Object</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/33-how the aggregated apiserver works/33-how the aggregated apiserver works.html" title="How The Aggregated Apiserver Works">How The Aggregated Apiserver Works</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/34-play with the sample api server/34-play with the sample api server.html" title="Play With The Sample Api Server">Play With The Sample Api Server</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/35-how to generate the scaffold aggregated apiserver/35-how to generate the scaffold aggregated apiserver.html" title="How To Generate The Scaffold Aggregated Apiserver">How To Generate The Scaffold Aggregated Apiserver</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/36-implement an aggregated apiserver for simple resources/36-implement an aggregated apiserver for simple resources.html" title="Implement An Aggregated Apiserver For Simple Resources">Implement An Aggregated Apiserver For Simple Resources</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/37-implement an aggregated apiserver using local files as storage/37-implement an aggregated apiserver using local files as storage.html" title="Implement An Aggregated Apiserver Using Local Files As Storage">Implement An Aggregated Apiserver Using Local Files As Storage</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/38-quiz on aggregated apiserver/38-quiz on aggregated apiserver.html" title="Quiz On Aggregated Apiserver">Quiz On Aggregated Apiserver</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/39-introduction to cni/39-introduction to cni.html" title="Introduction To Cni">Introduction To Cni</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/40-understanding the kubernetes networking model/40-understanding the kubernetes networking model.html" title="Understanding The Kubernetes Networking Model">Understanding The Kubernetes Networking Model</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/41-how the cni works/41-how the cni works.html" title="How The Cni Works">How The Cni Works</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/42-implementing a cni plugin/42-implementing a cni plugin.html" title="Implementing A Cni Plugin">Implementing A Cni Plugin</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/43-quiz on the container network interface/43-quiz on the container network interface.html" title="Quiz On The Container Network Interface">Quiz On The Container Network Interface</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/44-introduction to the container runtime interface cri/44-introduction to the container runtime interface cri.html" title="Introduction To The Container Runtime Interface Cri">Introduction To The Container Runtime Interface Cri</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/45-how the cri works/45-how the cri works.html" title="How The Cri Works">How The Cri Works</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/46-run multiple container runtimes/46-run multiple container runtimes.html" title="Run Multiple Container Runtimes">Run Multiple Container Runtimes</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/47-quiz on the container runtime interface/47-quiz on the container runtime interface.html" title="Quiz On The Container Runtime Interface">Quiz On The Container Runtime Interface</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/48-introduction to kubectl/48-introduction to kubectl.html" title="Introduction To Kubectl">Introduction To Kubectl</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/49-how kubectl plugins work/49-how kubectl plugins work.html" title="How Kubectl Plugins Work">How Kubectl Plugins Work</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/50-implementing a kubectl plugin/50-implementing a kubectl plugin.html" title="Implementing A Kubectl Plugin">Implementing A Kubectl Plugin</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/51-quiz on kubectl plugins/51-quiz on kubectl plugins.html" title="Quiz On Kubectl Plugins">Quiz On Kubectl Plugins</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/52-how to generate a scaffold operator/52-how to generate a scaffold operator.html" title="How To Generate A Scaffold Operator">How To Generate A Scaffold Operator</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/53-best practices for building kubernetes operators/53-best practices for building kubernetes operators.html" title="Best Practices For Building Kubernetes Operators">Best Practices For Building Kubernetes Operators</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/54-packaging and shipping operators/54-packaging and shipping operators.html" title="Packaging And Shipping Operators">Packaging And Shipping Operators</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/55-quiz on kubernetes operators/55-quiz on kubernetes operators.html" title="Quiz On Kubernetes Operators">Quiz On Kubernetes Operators</a></li>
+                
+                
+                <li><a href="/quintessential-dollar/56-reflecting on our kubernetes programming journey/56-reflecting on our kubernetes programming journey.html" title="Reflecting On Our Kubernetes Programming Journey">Reflecting On Our Kubernetes Programming Journey</a></li>
+                
+            </ul>
+        </li>
+    </ul>
+</div>
+    </aside>
+    <section class="content" style="overflow-y: auto;">
+      <article class="markdown-section" id="main">
+        <h1 id="class-assignment-title"><a href="/Assignments/Sample_Project?id=class-assignment-title"
+            data-id="class-assignment-title" class="anchor"><span>Programming with Kubernetes - Learn Interactively</span></a></h1>
+        <h2 id="description"><span>Course Overview</span></a></h2>
+        <p>Kubernetes is a popular open-source container orchestration system that automates the deployment, scaling, and management of containerized applications. This course is designed to provide a comprehensive understanding of Kubernetes and its programming concepts. You’ll dive deep into advanced topics of Kubernetes.
+
+This course will cover topics such as Kubernetes architecture, frameworks, plugins, and interfaces. You’ll also learn the powerful extensibilities of Kubernetes and make full use of these built-in capabilities to build your customized Kubernetes.
+
+This course is ideal for developers, DevOps engineers, and system administrators who want to learn how to master Kubernetes. By the end of the course, you’ll have a solid understanding of Kubernetes, its programming concepts, and be able to deploy, scale, and manage containerized customizations on Kubernetes. You will also get hands-on experience extending Kubernetes to meet your requirements.</p>
+      </article>
+      <article class="markdown-section" id="main">
+        <h2 id="description"><span>Course Content</span></a></h2>
+        <div class="table-wrapper">
+          <table id="_eiwfoklkm">
+            <thead>
+              <tr>
+                <th align="center">#</th>
+                <th align="center">Lesson</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr>
+                <td align="center">0</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/0-what is this course about/0-what is this course about.html"
+                      title="What Is This Course About">What Is This Course About</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">1</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/Makefile/Makefile.html"
+                      title=""></a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">2</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/1-intended audience and course requirements/1-intended audience and course requirements.html"
+                      title="Intended Audience And Course Requirements">Intended Audience And Course Requirements</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">3</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/2-what is kubernetes/2-what is kubernetes.html"
+                      title="What Is Kubernetes">What Is Kubernetes</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">4</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/3-the heart of kubernetes the kube apiserver/3-the heart of kubernetes the kube apiserver.html"
+                      title="The Heart Of Kubernetes The Kube Apiserver">The Heart Of Kubernetes The Kube Apiserver</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">5</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/4-the conductor of kubernetes the kube scheduler/4-the conductor of kubernetes the kube scheduler.html"
+                      title="The Conductor Of Kubernetes The Kube Scheduler">The Conductor Of Kubernetes The Kube Scheduler</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">6</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/5-the manufactory of kubernetes the kube controller manager/5-the manufactory of kubernetes the kube controller manager.html"
+                      title="The Manufactory Of Kubernetes The Kube Controller Manager">The Manufactory Of Kubernetes The Kube Controller Manager</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">7</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/6-kubernetes worker nodes/6-kubernetes worker nodes.html"
+                      title="Kubernetes Worker Nodes">Kubernetes Worker Nodes</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">8</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/7-quiz on kubernetes architecture/7-quiz on kubernetes architecture.html"
+                      title="Quiz On Kubernetes Architecture">Quiz On Kubernetes Architecture</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">9</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/8-introduction to authx/8-introduction to authx.html"
+                      title="Introduction To Authx">Introduction To Authx</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">10</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/9-how webhook token authentication works/9-how webhook token authentication works.html"
+                      title="How Webhook Token Authentication Works">How Webhook Token Authentication Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">11</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/10-implementing a webhook for token authentication/10-implementing a webhook for token authentication.html"
+                      title="Implementing A Webhook For Token Authentication">Implementing A Webhook For Token Authentication</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">12</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/11-how webhook authorization works/11-how webhook authorization works.html"
+                      title="How Webhook Authorization Works">How Webhook Authorization Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">13</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/12-implementing a webhook for authorization/12-implementing a webhook for authorization.html"
+                      title="Implementing A Webhook For Authorization">Implementing A Webhook For Authorization</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">14</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/13-quiz on customizing authx/13-quiz on customizing authx.html"
+                      title="Quiz On Customizing Authx">Quiz On Customizing Authx</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">15</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/14-introduction to admission control/14-introduction to admission control.html"
+                      title="Introduction To Admission Control">Introduction To Admission Control</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">16</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/15-validating admission webhooks/15-validating admission webhooks.html"
+                      title="Validating Admission Webhooks">Validating Admission Webhooks</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">17</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/16-implementing a validating admission webhook/16-implementing a validating admission webhook.html"
+                      title="Implementing A Validating Admission Webhook">Implementing A Validating Admission Webhook</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">18</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/17-mutating admission webhooks/17-mutating admission webhooks.html"
+                      title="Mutating Admission Webhooks">Mutating Admission Webhooks</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">19</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/18-implementing a mutating admission webhook/18-implementing a mutating admission webhook.html"
+                      title="Implementing A Mutating Admission Webhook">Implementing A Mutating Admission Webhook</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">20</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/19-quiz on admission control/19-quiz on admission control.html"
+                      title="Quiz On Admission Control">Quiz On Admission Control</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">21</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/20-a deep dive into kubernetes scheduling/20-a deep dive into kubernetes scheduling.html"
+                      title="A Deep Dive Into Kubernetes Scheduling">A Deep Dive Into Kubernetes Scheduling</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">22</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/21-multiple schedulers/21-multiple schedulers.html"
+                      title="Multiple Schedulers">Multiple Schedulers</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">23</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/22-scheduler extender/22-scheduler extender.html"
+                      title="Scheduler Extender">Scheduler Extender</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">24</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/23-introduction to the scheduler framework/23-introduction to the scheduler framework.html"
+                      title="Introduction To The Scheduler Framework">Introduction To The Scheduler Framework</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">25</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/24-implementing a scheduler framework plugin/24-implementing a scheduler framework plugin.html"
+                      title="Implementing A Scheduler Framework Plugin">Implementing A Scheduler Framework Plugin</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">26</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/25-quiz on schedulers/25-quiz on schedulers.html"
+                      title="Quiz On Schedulers">Quiz On Schedulers</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">27</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/26-introduction to custom resources/26-introduction to custom resources.html"
+                      title="Introduction To Custom Resources">Introduction To Custom Resources</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">28</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/27-understanding crds/27-understanding crds.html"
+                      title="Understanding Crds">Understanding Crds</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">29</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/28-how to use kubernetes crds/28-how to use kubernetes crds.html"
+                      title="How To Use Kubernetes Crds">How To Use Kubernetes Crds</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">30</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/29-how to generate scaffold crds/29-how to generate scaffold crds.html"
+                      title="How To Generate Scaffold Crds">How To Generate Scaffold Crds</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">31</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/30-quiz on crd/30-quiz on crd.html"
+                      title="Quiz On Crd">Quiz On Crd</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">32</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/31-introduction to aggregated apiserver/31-introduction to aggregated apiserver.html"
+                      title="Introduction To Aggregated Apiserver">Introduction To Aggregated Apiserver</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">33</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/32-understanding the apiservice object/32-understanding the apiservice object.html"
+                      title="Understanding The Apiservice Object">Understanding The Apiservice Object</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">34</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/33-how the aggregated apiserver works/33-how the aggregated apiserver works.html"
+                      title="How The Aggregated Apiserver Works">How The Aggregated Apiserver Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">35</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/34-play with the sample api server/34-play with the sample api server.html"
+                      title="Play With The Sample Api Server">Play With The Sample Api Server</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">36</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/35-how to generate the scaffold aggregated apiserver/35-how to generate the scaffold aggregated apiserver.html"
+                      title="How To Generate The Scaffold Aggregated Apiserver">How To Generate The Scaffold Aggregated Apiserver</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">37</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/36-implement an aggregated apiserver for simple resources/36-implement an aggregated apiserver for simple resources.html"
+                      title="Implement An Aggregated Apiserver For Simple Resources">Implement An Aggregated Apiserver For Simple Resources</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">38</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/37-implement an aggregated apiserver using local files as storage/37-implement an aggregated apiserver using local files as storage.html"
+                      title="Implement An Aggregated Apiserver Using Local Files As Storage">Implement An Aggregated Apiserver Using Local Files As Storage</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">39</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/38-quiz on aggregated apiserver/38-quiz on aggregated apiserver.html"
+                      title="Quiz On Aggregated Apiserver">Quiz On Aggregated Apiserver</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">40</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/39-introduction to cni/39-introduction to cni.html"
+                      title="Introduction To Cni">Introduction To Cni</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">41</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/40-understanding the kubernetes networking model/40-understanding the kubernetes networking model.html"
+                      title="Understanding The Kubernetes Networking Model">Understanding The Kubernetes Networking Model</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">42</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/41-how the cni works/41-how the cni works.html"
+                      title="How The Cni Works">How The Cni Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">43</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/42-implementing a cni plugin/42-implementing a cni plugin.html"
+                      title="Implementing A Cni Plugin">Implementing A Cni Plugin</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">44</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/43-quiz on the container network interface/43-quiz on the container network interface.html"
+                      title="Quiz On The Container Network Interface">Quiz On The Container Network Interface</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">45</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/44-introduction to the container runtime interface cri/44-introduction to the container runtime interface cri.html"
+                      title="Introduction To The Container Runtime Interface Cri">Introduction To The Container Runtime Interface Cri</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">46</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/45-how the cri works/45-how the cri works.html"
+                      title="How The Cri Works">How The Cri Works</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">47</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/46-run multiple container runtimes/46-run multiple container runtimes.html"
+                      title="Run Multiple Container Runtimes">Run Multiple Container Runtimes</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">48</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/47-quiz on the container runtime interface/47-quiz on the container runtime interface.html"
+                      title="Quiz On The Container Runtime Interface">Quiz On The Container Runtime Interface</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">49</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/48-introduction to kubectl/48-introduction to kubectl.html"
+                      title="Introduction To Kubectl">Introduction To Kubectl</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">50</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/49-how kubectl plugins work/49-how kubectl plugins work.html"
+                      title="How Kubectl Plugins Work">How Kubectl Plugins Work</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">51</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/50-implementing a kubectl plugin/50-implementing a kubectl plugin.html"
+                      title="Implementing A Kubectl Plugin">Implementing A Kubectl Plugin</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">52</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/51-quiz on kubectl plugins/51-quiz on kubectl plugins.html"
+                      title="Quiz On Kubectl Plugins">Quiz On Kubectl Plugins</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">53</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/52-how to generate a scaffold operator/52-how to generate a scaffold operator.html"
+                      title="How To Generate A Scaffold Operator">How To Generate A Scaffold Operator</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">54</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/53-best practices for building kubernetes operators/53-best practices for building kubernetes operators.html"
+                      title="Best Practices For Building Kubernetes Operators">Best Practices For Building Kubernetes Operators</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">55</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/54-packaging and shipping operators/54-packaging and shipping operators.html"
+                      title="Packaging And Shipping Operators">Packaging And Shipping Operators</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">56</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/55-quiz on kubernetes operators/55-quiz on kubernetes operators.html"
+                      title="Quiz On Kubernetes Operators">Quiz On Kubernetes Operators</a>
+                  </strong>
+                </td>
+              </tr>
+              
+              
+              <tr>
+                <td align="center">57</td>
+                <td align="center">
+                  <strong>
+                    <a href="/quintessential-dollar/56-reflecting on our kubernetes programming journey/56-reflecting on our kubernetes programming journey.html"
+                      title="Reflecting On Our Kubernetes Programming Journey">Reflecting On Our Kubernetes Programming Journey</a>
+                  </strong>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+  <!-- UPDATE: Make sure to update NAME, REPO, and NAMESPACE below-->
+  <script>
+
+  </script>
+  <script src="/quintessential-dollar/static/docsify.min.js"></script>
+  <script src="/quintessential-dollar/static/index.js"></script>
+  <script src="/quintessential-dollar/static/emoji.min.js"></script>
+  <script src="/quintessential-dollar/static/external-script.min.js"></script>
+  <script src="/quintessential-dollar/static/docsify-copy-code@2"></script>
+  <script src="/quintessential-dollar/static/docsify-tabs@1"></script>
+  <script src="/quintessential-dollar/static/docsify-plugin-flexible-alerts"></script>
+  <script src="/quintessential-dollar/static/prism-bash.min.js"></script>
+  <script src="/quintessential-dollar/static/prism-handlebars.min.js"></script>
+  <script src="/quintessential-dollar/static/prism-javascript.min.js"></script>
+  <script src="/quintessential-dollar/static/prism-json.min.js"></script>
+  <script src="/quintessential-dollar/static/prism-markdown.min.js"></script>
+  <script src="/quintessential-dollar/static/index.min.js" type="text/javascript">
+  </script>
+</body>
+
+</html>

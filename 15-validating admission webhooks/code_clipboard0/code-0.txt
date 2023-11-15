@@ -1,0 +1,19 @@
+apiVersion: admissionregistration.k8s.io/v1 # Could be v1beta1 as well
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: demo-validating-webhook
+webhooks:
+  - name: validating-webhook.webhook-demo.svc # Name must be fully qualified
+    clientConfig: #  Defines how the kube-apiserver communicates with the hook
+      # URL: "https://some-webhook.demo.com/validate"
+      service: # If the webhook is running within the cluster, then we should use service.
+        name: validating-webhook
+        namespace: webhook-demo
+        path: "/validate"
+      caBundle: ${CA_PEM_B64}
+    rules:
+      - operations: [ "CREATE" ]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["pods"]
+    timeoutSeconds: 10

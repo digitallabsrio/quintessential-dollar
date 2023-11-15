@@ -1,0 +1,22 @@
+// PodSpec is a description of a Pod.
+type PodSpec struct {
+	...
+
+	// Specifies the hostname of the Pod
+	// If not specified, the Pod's hostname will be set to a system-defined value.
+	// +optional
+	Hostname string `json:"hostname,omitempty" protobuf:"bytes,16,opt,name=hostname"`
+	// If specified, the fully qualified Pod hostname will be "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>".
+	// IIf not specified, the Pod will not have a domain name at all.
+	// +optional
+	Subdomain string `json:"subdomain,omitempty" protobuf:"bytes,17,opt,name=subdomain"`
+	// If specified, the Pod's scheduling constraints.
+	// +optional
+	Affinity *Affinity `json:"affinity,omitempty" protobuf:"bytes,18,opt,name=affinity"`
+	// If specified, the Pod will be dispatched by specified scheduler.
+	// If not specified, the Pod will be dispatched by default scheduler.
+	// +optional
+	SchedulerName string `json:"schedulerName,omitempty" protobuf:"bytes,19,opt,name=schedulerName"`
+
+	...
+}

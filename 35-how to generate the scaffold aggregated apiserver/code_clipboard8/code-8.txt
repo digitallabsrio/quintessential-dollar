@@ -1,0 +1,1 @@
+apiserver-boot build container --image educative.io/pwk/apiserver:demo

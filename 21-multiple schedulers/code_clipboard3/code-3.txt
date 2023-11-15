@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-demo
+  labels:
+    purpose: demo
+spec:
+  schedulerName: default-scheduler
+  containers:
+  - name: pod-demo
+    image: nginx:1.23
+    restartPolicy: OnFailure
+    ports:
+    - containerPort: 80

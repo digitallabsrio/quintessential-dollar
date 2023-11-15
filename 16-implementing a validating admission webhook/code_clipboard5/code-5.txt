@@ -1,0 +1,1 @@
+CABUNDLE=`base64 -w 0 ca.pem` envsubst < /usercode/webhook-config.yml | kubectl apply -f -

@@ -1,0 +1,50 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  # name must be in the form: <plural>.<group>
+  name: <name>
+spec:
+  group: <group name>
+  conversion: #optional
+    # Specifies how custom resources are converted between versions
+    # can be None or Webhook
+    strategy: None
+  names: # Specify the resource and kind names for the custom resource
+    categories: # optional
+    # List of categories this custom resource belongs to (e.g. 'all')
+    - <mycategory>
+    kind: <Uppercase name>
+    listKind: <Uppercase list kind, defaulted to be kindList>
+    plural: <lowercase plural name>
+    shortNames: # optional
+    # List of strings as short names
+    - <alias1>
+    singular: <lowercase singular name, defaulted to be lowercase kind>
+  scope: Namespaced  # Namespaced or cluster scope
+  versions: # List of all API versions
+  - name: v1alpha1
+    schema: # Optional
+      openAPIV3Schema: # OpenAPI v3 schema to use for validation and pruning
+        description: HelmChart is the Schema for the helm chart
+        properties: # Describe all the fields
+          ...
+        required: # Mark required fields
+        - ...
+        type: object
+    served: true
+    storage: true
+    subresources: # Optional
+      status: {} # To enable the status subresource (optional)
+      scale: # Optional
+        specReplicasPath: <JSON path for the replica field, such as `spec.replicas`>
+        statusReplicasPath: <JSON path for the replica number in the status>
+        labelSelectorPath: <JSON path that corresponds to Scale `status.selector`>
+    additionalPrinterColumns: # Optional
+    # Specify additional columns returned in Table output. Used by kubectl
+    - description: The phase of this custom resource # Example
+      jsonPath: .status.phase
+      name: STATUS
+      type: string
+    - jsonPath: .metadata.creationTimestamp # Example
+      name: AGE
+      type: date

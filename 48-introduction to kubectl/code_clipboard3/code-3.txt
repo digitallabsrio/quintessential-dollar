@@ -1,0 +1,29 @@
+// staging/src/k8s.io/client-go/tools/clientcmd/loader.go
+
+func (o *PathOptions) GetLoadingPrecedence() []string {
+	if o.IsExplicitFile() {
+		return []string{o.GetExplicitFile()}
+	}
+
+	if envVarFiles := o.GetEnvVarFiles(); len(envVarFiles) > 0 {
+		return envVarFiles
+	}
+	return []string{o.GlobalFile}
+}
+
+...
+
+func NewDefaultPathOptions() *PathOptions {
+	ret := &PathOptions{
+		GlobalFile:       RecommendedHomeFile,
+		EnvVar:           RecommendedConfigPathEnvVar,
+		ExplicitFileFlag: RecommendedConfigPathFlag,
+
+		GlobalFileSubpath: path.Join(RecommendedHomeDir, RecommendedFileName),
+
+		LoadingRules: NewDefaultClientConfigLoadingRules(),
+	}
+	ret.LoadingRules.DoNotResolvePaths = true
+
+	return ret
+}

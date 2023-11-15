@@ -1,0 +1,64 @@
+diff --git a/pkg/apis/bar/v1beta1/foo_types.go b/pkg/apis/bar/v1beta1/foo_types.go
+index ff298ed..494bab8 100644
+--- a/pkg/apis/bar/v1beta1/foo_types.go
++++ b/pkg/apis/bar/v1beta1/foo_types.go
+@@ -1,4 +1,3 @@
+-
+ /*
+ Copyright 2022.
+
+@@ -21,7 +20,7 @@ import (
+        "context"
+
+        metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+-       "k8s.io/apimachinery/pkg/runtime"
++       "k8s.io/apimachinery/pkg/runtime"
+        "k8s.io/apimachinery/pkg/runtime/schema"
+        "k8s.io/apimachinery/pkg/util/validation/field"
+        "sigs.k8s.io/apiserver-runtime/pkg/builder/resource"
+@@ -44,7 +43,7 @@ type Foo struct {
+ // FooList
+ // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+ type FooList struct {
+-       metav1.TypeMeta   `json:",inline"`
++       metav1.TypeMeta `json:",inline"`
+        metav1.ListMeta `json:"metadata,omitempty"`
+
+        Items []Foo `json:"items"`
+@@ -52,6 +51,9 @@ type FooList struct {
+
+ // FooSpec defines the desired state of Foo
+ type FooSpec struct {
++       Replicas int `json:"replicas,omitempty"`
++
++       Location string `json:"location,omitempty"`
+ }
+
+ var _ resource.Object = &Foo{}
+@@ -85,8 +87,27 @@ func (in *Foo) IsStorageVersion() bool {
+        return true
+ }
+
++func (in *Foo) Default() {
++       // TODO (pwk):
++       // we can apply defaulting here
++}
++
+ func (in *Foo) Validate(ctx context.Context) field.ErrorList {
+        // TODO(user): Modify it, adding your API validation here.
++
++       // we check the replicas
++       errors := field.ErrorList{}
++       if in.Spec.Replicas < 0 {
++               errors = append(errors,
++                       field.Invalid(field.NewPath("spec", "replicas"), in.Spec.Replicas, "replicas must be > 0"))
++       }
++       if in.Spec.Replicas > 100 {
++               errors = append(errors,
++                       field.Invalid(field.NewPath("spec", "replicas"), in.Spec.Replicas, "replicas must be < 100"))
++       }
++
++       return errors
++
+        return nil
+ }

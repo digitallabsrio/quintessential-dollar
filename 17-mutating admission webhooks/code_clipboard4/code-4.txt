@@ -1,0 +1,9 @@
+apiVersion: admission.k8s.io/v1
+kind: AdmissionReview
+response:
+  # Value from request.uid
+  # Here, we use the example above
+  uid: dc91021d-2361-4f6d-a404-7c33b9e01118
+  allowed: true
+  patchType: JSONPatch
+  patch: W3sib3AiOiAiYWRkIiwgInBhdGgiOiAiL3NwZWMvcmVwbGljYXMiLCAidmFsdWUiOiAzfV0=

@@ -1,0 +1,1 @@
+apiserver-boot create group version resource --group bar --version v1beta1 --kind Foo --with-status-subresource

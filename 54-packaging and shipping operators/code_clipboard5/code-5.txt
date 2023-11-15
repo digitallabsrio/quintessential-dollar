@@ -1,0 +1,17 @@
+./
+`-- pwk-demo-operator
+    |-- charts
+    |-- Chart.yaml
+    |-- templates
+    |   |-- deployment.yaml
+    |   |-- _helpers.tpl
+    |   |-- hpa.yaml
+    |   |-- ingress.yaml
+    |   |-- NOTES.txt
+    |   |-- serviceaccount.yaml
+    |   |-- service.yaml
+    |   `-- tests
+    |       `-- test-connection.yaml
+    `-- values.yaml
+
+4 directories, 10 files

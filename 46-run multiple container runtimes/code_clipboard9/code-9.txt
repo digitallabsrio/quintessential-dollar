@@ -1,0 +1,2 @@
+NAME           READY   STATUS    RESTARTS   AGE     IP           NODE               NOMINATED NODE   READINESS GATES
+nginx-gvisor   1/1     Running   0          3m40s   10.244.0.6   6550573b8bf5a716   <none>           <none>

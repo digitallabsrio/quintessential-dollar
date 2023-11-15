@@ -1,0 +1,4 @@
+NAME                           STATUS     ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE       KERNEL-VERSION   CONTAINER-RUNTIME
+educative-demo-control-plane   Ready      control-plane   58s   v1.24.0   172.19.0.3    <none>        Ubuntu 21.10   4.19.197         containerd://1.6.4
+educative-demo-worker          NotReady   <none>          21s   v1.24.0   172.19.0.2    <none>        Ubuntu 21.10   4.19.197         containerd://1.6.4
+educative-demo-worker2         NotReady   <none>          20s   v1.24.0   172.19.0.4    <none>        Ubuntu 21.10   4.19.197         containerd://1.6.4

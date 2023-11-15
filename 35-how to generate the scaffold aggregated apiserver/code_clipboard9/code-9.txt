@@ -1,0 +1,1 @@
+apiserver-boot build config --name pwk-aa-demo --namespace pwk-system --image educative.io/pwk/apiserver:demo

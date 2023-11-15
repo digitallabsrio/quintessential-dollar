@@ -1,0 +1,3 @@
+mkdir -p /root/go/src/educative.io/pwk
+cd /root/go/src/educative.io/pwk
+apiserver-boot init repo --domain pwk.educative.io --module-name educative.io/pwk

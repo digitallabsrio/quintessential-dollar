@@ -1,0 +1,2 @@
+sed -i "18i\    - --authentication-token-webhook-config-file=/etc/kubernetes/pki/webhook-config.yml" /etc/kubernetes/manifests/kube-apiserver.yaml
+docker ps -a | grep apiserver | grep -v "pause" | awk '{print $1}' | xargs docker rm -f

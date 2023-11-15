@@ -1,0 +1,5 @@
+# list all the nodes
+kubectl get node
+
+# view nodes with extra infomation
+kubectl get node -o wide

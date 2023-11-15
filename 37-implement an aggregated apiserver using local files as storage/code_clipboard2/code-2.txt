@@ -1,0 +1,51 @@
+diff --git a/controllers/bar/foo_controller.go b/controllers/bar/foo_controller.go
+index 7628984..bef1bee 100644
+--- a/controllers/bar/foo_controller.go
++++ b/controllers/bar/foo_controller.go
+@@ -19,10 +19,11 @@ package bar
+ import (
+        "context"
+
++       "k8s.io/apimachinery/pkg/api/errors"
+        "k8s.io/apimachinery/pkg/runtime"
+        ctrl "sigs.k8s.io/controller-runtime"
+        "sigs.k8s.io/controller-runtime/pkg/client"
+-       "sigs.k8s.io/controller-runtime/pkg/log"
++       "sigs.k8s.io/controller-runtime/pkg/reconcile"
+
+        barv1beta1 "educative.io/pwk/pkg/apis/bar/v1beta1"
+ )
+@@ -47,11 +48,26 @@ type FooReconciler struct {
+ // For more details, check Reconcile and its Result here:
+ // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.11.0/pkg/reconcile
+ func (r *FooReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
+-       _ = log.FromContext(ctx)
++       // Fetch the Foo instance
++       instance := &barv1beta1.Foo{}
++       err := r.Get(ctx, req.NamespacedName, instance)
++       if err != nil {
++               if errors.IsNotFound(err) {
++                       // Object not found, return.  Created objects are automatically garbage collected.
++                       // For additional cleanup logic use finalizers.
++                       return reconcile.Result{}, nil
++               }
++               // Error reading the object - requeue the request.
++               return reconcile.Result{}, err
++       }
+
+-       // TODO(user): your logic here
++       instance.Spec.Location = "Los Angeles"
+
+-       return ctrl.Result{}, nil
++       if err := r.Update(ctx, instance); err != nil {
++               return reconcile.Result{}, err
++       }
++
++       return reconcile.Result{}, nil
+ }
+
+ // SetupWithManager sets up the controller with the Manager.
+@@ -60,3 +76,4 @@ func (r *FooReconciler) SetupWithManager(mgr ctrl.Manager) error {
+                For(&barv1beta1.Foo{}).
+                Complete(r)
+ }

@@ -1,0 +1,21 @@
+// Codes from https://github.com/kubernetes/kubernetes/blob/master/pkg/kubeapiserver/options/plugins.go#L143-L162
+defaultOnPlugins := sets.NewString(  
+   lifecycle.PluginName,                    // NamespaceLifecycle  
+   limitranger.PluginName,                  // LimitRanger  
+   serviceaccount.PluginName,               // ServiceAccount  
+   setdefault.PluginName,                   // DefaultStorageClass  
+   resize.PluginName,                       // PersistentVolumeClaimResize  
+   defaulttolerationseconds.PluginName,     // DefaultTolerationSeconds  
+   mutatingwebhook.PluginName,              // MutatingAdmissionWebhook  
+   validatingwebhook.PluginName,            // ValidatingAdmissionWebhook  
+   resourcequota.PluginName,                // ResourceQuota  
+   storageobjectinuseprotection.PluginName, // StorageObjectInUseProtection  
+   podpriority.PluginName,                  // PodPriority  
+   nodetaint.PluginName,                    // TaintNodesByCondition  
+   runtimeclass.PluginName,                 // RuntimeClass  
+   certapproval.PluginName,                 // CertificateApproval  
+   certsigning.PluginName,                  // CertificateSigning  
+   certsubjectrestriction.PluginName,       // CertificateSubjectRestriction  
+   defaultingressclass.PluginName,          // DefaultIngressClass  
+   podsecurity.PluginName,                  // PodSecurity  
+)

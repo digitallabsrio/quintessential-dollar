@@ -1,0 +1,48 @@
+package myprefilter
+
+import (
+	"context"
+
+	corev1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/kubernetes/pkg/scheduler/framework"
+)
+
+var _ framework.PreFilterPlugin = &Plugin{}
+
+const (
+	PluginName = "MyPreFilter"
+	annFoo     = "mycompany.com/environment"
+)
+
+type Plugin struct {
+	confinedAnnotation string
+	handle             framework.Handle
+}
+
+func (p *Plugin) Name() string {
+	return PluginName
+}
+
+func (p *Plugin) PreFilter(ctx context.Context, state *framework.CycleState, pod *corev1.Pod) *framework.Status {
+	// TODO: Add your own logic here. // In this demo, we use PreFilter to check the preconditions 
+	// of Pods before filtering nodes.
+	anns := pod.GetAnnotations()
+	if anns != nil {
+		if _, ok := anns[annFoo]; ok {
+			return framework.NewStatus(framework.Unschedulable, fmt.Sprintf("disallowing pods with annotation %s", annFoo))
+		}
+	}
+	return nil
+}
+
+func (p *Plugin) PreFilterExtensions() framework.PreFilterExtensions {
+	return nil
+}
+
+// The New() function initializes a new plugin and returns it.
+func New(_ runtime.Object, handle framework.Handle) (framework.Plugin, error) {
+	return &Plugin{
+		confinedAnnotation: annFoo,
+	}, nil
+}

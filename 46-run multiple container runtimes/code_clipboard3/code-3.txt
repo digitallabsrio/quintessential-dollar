@@ -1,0 +1,2 @@
+systemctl restart containerd
+systemctl restart kubelet

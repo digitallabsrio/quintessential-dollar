@@ -1,0 +1,1 @@
+kubebuilder create api --group apps --version v1beta1 --kind Foo --controller=true --make --resource --namespaced=false

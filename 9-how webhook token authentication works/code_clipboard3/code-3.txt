@@ -1,0 +1,17 @@
+{
+  "apiVersion": "authentication.k8s.io/v1beta1",
+  "kind": "TokenReview",
+  "spec": {
+    "token": "beaer-token-here-please-change-me"
+  },
+  "status": {
+    "authenticated": true,
+    "user": {
+      "username": "some-body",
+      "uid": "a-valid-user-id",
+      "group": [
+        "group1"
+      ]
+    }
+  }
+}

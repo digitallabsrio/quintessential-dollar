@@ -1,0 +1,13 @@
+apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  name: <name of the registration object>
+spec:
+  group: <API group name this extension apiserver hosts>
+  version: <API version this extension apiserver hosts>
+  groupPriorityMinimum: <priority this APIService for this group, see API documentation>
+  versionPriority: <prioritizes ordering of this version within a group, see API documentation>
+  service:
+    namespace: <namespace of the extension apiserver service>
+    name: <name of the extension apiserver service>
+  caBundle: <pem encoded ca cert that signs the server cert used by the webhook>

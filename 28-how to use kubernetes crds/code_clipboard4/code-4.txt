@@ -1,0 +1,7 @@
+I1012 09:10:55.254232    4271 loader.go:372] Config loaded from file:  /root/.kube/config
+I1012 09:10:55.265509    4271 round_trippers.go:463] GET https://172.17.0.2:6443/apis/pwk.educative.io/v1alpha1/namespaces/default/foos?limit=500
+I1012 09:10:55.265726    4271 round_trippers.go:469] Request Headers:
+I1012 09:10:55.265915    4271 round_trippers.go:473]     Accept: application/json;as=Table;v=v1;g=meta.k8s.io,application/json;as=Table;v=v1beta1;g=meta.k8s.io,application/json
+I1012 09:10:55.266007    4271 round_trippers.go:473]     User-Agent: kubectl/v1.23.8 (linux/amd64) kubernetes/a12b886
+I1012 09:10:55.282981    4271 round_trippers.go:574] Response Status: 200 OK in 16 milliseconds
+No resources found in default namespace.

@@ -1,0 +1,27 @@
+cat <<EOF | patch -d /etc/containerd
+diff a/config.toml b/config.toml
+--- a/config.toml
++++ b/config.toml
+@@ -99,6 +99,12 @@
+
+       [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
+
++        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runsc]
++          runtime_type = "io.containerd.runsc.v1"
++
++          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runsc.options]
++            SystemdCgroup = true
++
+         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+           base_runtime_spec = ""
+           cni_conf_dir = ""
+@@ -122,7 +128,7 @@
+             NoPivotRoot = false
+             Root = ""
+             ShimCgroup = ""
+-            SystemdCgroup = false
++            SystemdCgroup = true
+
+       [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime]
+         base_runtime_spec = ""
+EOF

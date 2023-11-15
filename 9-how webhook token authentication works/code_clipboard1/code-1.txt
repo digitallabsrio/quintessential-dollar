@@ -1,0 +1,18 @@
+  apiVersion: v1
+  kind: Config
+  clusters:
+    - name: remote-authn-service
+  	cluster:
+  	  certificate-authority: /path/to/ca.pem        # [CHANGEME] CA for verifying the remote service.
+  	  server: https://auth.webhook.com/authenticate # [CHANGEME] URL of remote service to query. 'https' recommended for production.
+  users:
+    - name: webhook-authn
+  	user:
+  	  client-certificate: /path/to/cert.pem # [CHANGEME] cert for the webhook plugin to use
+  	  client-key: /path/to/key.pem          # [CHANGEME] key matching the cert
+  current-context: webhook-authn
+  contexts:
+  - context:
+  	cluster: remote-authn-service
+  	user: webhook-authn
+    name: webhook-authn

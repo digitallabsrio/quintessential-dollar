@@ -1,0 +1,41 @@
+// Codes from https://github.com/kubernetes/kubernetes/blob/master/pkg/kubeapiserver/options/plugins.go#L63-L103
+// AllOrderedPlugins is the list of all the plugins in order.
+var AllOrderedPlugins = []string{  
+   admit.PluginName,                        // AlwaysAdmit  
+   autoprovision.PluginName,                // NamespaceAutoProvision  
+   lifecycle.PluginName,                    // NamespaceLifecycle  
+   exists.PluginName,                       // NamespaceExists  
+   scdeny.PluginName,                       // SecurityContextDeny  
+   antiaffinity.PluginName,                 // LimitPodHardAntiAffinityTopology  
+   limitranger.PluginName,                  // LimitRanger  
+   serviceaccount.PluginName,               // ServiceAccount  
+   noderestriction.PluginName,              // NodeRestriction  
+   nodetaint.PluginName,                    // TaintNodesByCondition  
+   alwayspullimages.PluginName,             // AlwaysPullImages  
+   imagepolicy.PluginName,                  // ImagePolicyWebhook  
+   podsecurity.PluginName,                  // PodSecurity - comes before PodSecurityPolicy so the audit/warning get executed even if PodSecurityPolicy is denied
+   podsecuritypolicy.PluginName,            // PodSecurityPolicy  
+   podnodeselector.PluginName,              // PodNodeSelector  
+   podpriority.PluginName,                  // Priority  
+   defaulttolerationseconds.PluginName,     // DefaultTolerationSeconds  
+   podtolerationrestriction.PluginName,     // PodTolerationRestriction  
+   eventratelimit.PluginName,               // EventRateLimit  
+   extendedresourcetoleration.PluginName,   // ExtendedResourceToleration  
+   label.PluginName,                        // PersistentVolumeLabel  
+   setdefault.PluginName,                   // DefaultStorageClass  
+   storageobjectinuseprotection.PluginName, // StorageObjectInUseProtection  
+   gc.PluginName,                           // OwnerReferencesPermissionEnforcement  
+   resize.PluginName,                       // PersistentVolumeClaimResize  
+   runtimeclass.PluginName,                 // RuntimeClass  
+   certapproval.PluginName,                 // CertificateApproval  
+   certsigning.PluginName,                  // CertificateSigning  
+   certsubjectrestriction.PluginName,       // CertificateSubjectRestriction  
+   defaultingressclass.PluginName,          // DefaultIngressClass  
+   denyserviceexternalips.PluginName,       // DenyServiceExternalIPs  
+  
+   // New admission plugins should generally be inserted above here. The webhook, resourcequota, and deny plugins must go at the end
+   mutatingwebhook.PluginName,   // MutatingAdmissionWebhook  
+   validatingwebhook.PluginName, // ValidatingAdmissionWebhook  
+   resourcequota.PluginName,     // ResourceQuota  
+   deny.PluginName,              // AlwaysDeny  
+}

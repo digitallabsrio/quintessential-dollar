@@ -1,0 +1,1 @@
+kubectl get foo -n default -v 7

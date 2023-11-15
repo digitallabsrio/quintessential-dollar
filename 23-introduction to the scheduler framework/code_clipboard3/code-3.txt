@@ -1,0 +1,20 @@
+// https://github.com/kubernetes/kubernetes/blob/master/pkg/scheduler/framework/interface.go#L419-L438
+// ScoreExtensions is an interface for Score extended functionality.
+type ScoreExtensions interface {
+	// NormalizeScore() is called for all node scores produced by the same plugin's Score() method.
+    // A successful run of NormalizeScore() will update the scores list and return a status of success.
+
+	NormalizeScore(ctx context.Context, state *CycleState, p *v1.Pod, scores NodeScoreList) *Status
+}
+
+// ScorePlugin is an interface that must be implemented by Score plugins to rank
+// nodes that passed the filtering phase.
+type ScorePlugin interface {
+	Plugin
+	// Score() is called on each filtered node. It must return success and an integer indicating
+	// the rank of the node. All scoring plugins must return success or the Pod will be rejected.
+	Score(ctx context.Context, state *CycleState, p *v1.Pod, nodeName string) (int64, *Status)
+
+	// ScoreExtensions() returns a ScoreExtensions interface if it implements one, or nothing if does not.
+	ScoreExtensions() ScoreExtensions
+}

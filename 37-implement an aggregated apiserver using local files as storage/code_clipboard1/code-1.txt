@@ -1,0 +1,29 @@
+diff --git a/aggregated-apiserver-non-etcd/cmd/apiserver/main.go b/aggregated-apiserver-non-etcd/cmd/apiserver/main.go
+index 8aabb8d..40526e8 100644
+--- a/aggregated-apiserver-non-etcd/cmd/apiserver/main.go
++++ b/aggregated-apiserver-non-etcd/cmd/apiserver/main.go
+@@ -19,17 +19,20 @@ package main
+ import (
+        "k8s.io/klog"
+        "sigs.k8s.io/apiserver-runtime/pkg/builder"
++       "sigs.k8s.io/apiserver-runtime/pkg/experimental/storage/filepath"
+
+        // +kubebuilder:scaffold:resource-imports
+-barv1beta1 "educative.io/pwk/pkg/apis/bar/v1beta1"
++       barv1beta1 "educative.io/pwk/pkg/apis/bar/v1beta1"
+ )
+
+ func main() {
+        err := builder.APIServer.
+                // +kubebuilder:scaffold:resource-register
+-WithResource(&barv1beta1.Foo{}).
++               // writes Foo resources as static files under the "data" folder in the working directory.
++               WithResourceAndHandler(&barv1beta1.Foo{}, filepath.NewJSONFilepathStorageProvider(&barv1beta1.Foo{}, "data")).
++               WithoutEtcd().
+                Execute()
+        if err != nil {
+                klog.Fatal(err)
+        }
+-}
+\ No newline at end of file
++}

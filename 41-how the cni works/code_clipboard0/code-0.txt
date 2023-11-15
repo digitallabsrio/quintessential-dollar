@@ -1,0 +1,47 @@
+// From github.com/containerd/containerd/pkg/cri/sbserver/sandbox_run.go
+
+// getNetworkPlugin returns the network plugin to be used by the runtime class
+// defaults to the global CNI options in the CRI config
+func (c *criService) getNetworkPlugin(runtimeClass string) cni.CNI {
+	if c.netPlugin == nil {
+		return nil
+	}
+	i, ok := c.netPlugin[runtimeClass]
+	if !ok {
+		if i, ok = c.netPlugin[defaultNetworkPlugin]; !ok {
+			return nil
+		}
+	}
+	return i
+}
+
+// setupPodNetwork setups up the network for a pod
+func (c *criService) setupPodNetwork(ctx context.Context, sandbox *sandboxstore.Sandbox) error {
+	var (
+		id        = sandbox.ID
+		config    = sandbox.Config
+		path      = sandbox.NetNSPath
+		netPlugin = c.getNetworkPlugin(sandbox.RuntimeHandler)
+	)
+	if netPlugin == nil {
+		return errors.New("cni config not initialized")
+	}
+
+	opts, err := cniNamespaceOpts(id, config)
+	if err != nil {
+		return fmt.Errorf("get cni namespace options: %w", err)
+	}
+	log.G(ctx).WithField("podsandboxid", id).Debugf("begin cni setup")
+	result, err := netPlugin.Setup(ctx, id, path, opts...)
+	if err != nil {
+		return err
+	}
+	logDebugCNIResult(ctx, id, result)
+	// Check if the default interface has IP config
+	if configs, ok := result.Interfaces[defaultIfName]; ok && len(configs.IPConfigs) > 0 {
+		sandbox.IP, sandbox.AdditionalIPs = selectPodIPs(ctx, configs.IPConfigs, c.config.IPPreference)
+		sandbox.CNIResult = result
+		return nil
+	}
+	return fmt.Errorf("failed to find network info for sandbox %q", id)
+}

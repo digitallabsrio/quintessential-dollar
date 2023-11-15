@@ -1,0 +1,2 @@
+NAME                             READY   STATUS    RESTARTS      AGE
+wardle-server-798dcdb654-tq2tc   2/2     Running   0             2m1s
